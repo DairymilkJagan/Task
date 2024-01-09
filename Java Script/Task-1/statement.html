@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <script>
+
+// <!-- If hour is between 12AM to 1PM        Good Morning  --> 0 - 13
+//  <!-- Else if hour is between 1AM to 5PM   Good Afternoon --> 13 - 17
+//  <!-- Else hour is between 5PM to 12AM      Good Evening  --> 17 - 0
+
+
+// let hour = new Date();
+// console.log(hour);
+// console.log(hour.getHours());
+
+// let hour = 12;
+
+// let hrs = new Date();
+// let hour = hrs.getHours();
+
+let hour  = new Date().getHours();
+// console.log(hour);
+
+if(hour >= 0 && hour <=13)
+    console.log("Good Morning");
+else if (hour >=13 && hour <=17)
+    console.log("Good Afternoon");
+else 
+    console.log("Good Evening");
+
+
+
+
+</script>
+</body>
+</html>

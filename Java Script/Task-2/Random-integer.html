@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DIVIDE TWO VALUE</title>
+  </head>
+  <body>
+    <h2>Divide two value</h2>
+    <div id="demo"></div>
+
+    <script>
+        
+      function divide_two_number() {
+        let a = Math.floor(Math.random() * 1000) + 1;
+        let b = Math.floor(Math.random() * 1000) + 1;
+        let result = "";
+        result +=
+          "The value of a : " + a + "<br>" + "The vale of b : " + b + "<br>";
+        let divide = a / b;
+        if (divide === Math.floor(divide)) {
+          result += "The Value of a/b : " + divide + "<br>";
+        } else {
+          divide = divide.toFixed(2);
+          result += "The Value of a/b : " + divide + "<br>";
+        }
+        document.getElementById("demo").innerHTML = result;
+      }
+      divide_two_number();
+
+    </script>
+  </body>
+</html>

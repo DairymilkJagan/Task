@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JavaScript</title>
+    </head>
+<body>
+
+<script>
+// String Methods : 
+var s1 = "JAVASCRIPT IS VERY EASY TO LEARN";
+var s2 = "LEARN JAVASCRIPT";
+var s3 = "HELLO WORLD HELLO";
+var s4 = "HELLO WORLD Hello";
+var s5 = "learn javascript";
+var s6 = "      Welcome to string method        "
+// 1.CharAt() :
+console.log(s1.charAt(4));
+// 2.CharCodeAt() : 
+console.log(s1.charCodeAt(4));
+// 3.concat() : 
+console.log(s1.concat(s2));
+// 4. endwith() & startwith() :
+console.log(s1.startsWith("J"));
+console.log(s2.endsWith("K"));
+// 5.fromCharCode() :
+console.log(String.fromCharCode(83));
+// 6. includes() :
+console.log(s1.includes("IS"));
+// 7. indexOf() : 
+console.log(s3.indexOf("HELLO"));
+// 8. lastIndexOf() :
+console.log(s3.lastIndexOf("HELLO"));
+// 9. match() :
+console.log(s4.match(/ello/g));  //display array 
+console.log(s4.match(/ello/i));  // upper case
+console.log(s4.match(/ello/gi));  // lower case & upper case
+// 10. repeat() :
+console.log(s1.repeat(2));
+// 11. replace() :
+console.log(s4.replace(/ello/g,"ELLO"));
+console.log(s4.replace(/ello/i,"ello"));
+// 12. search() :
+console.log(s1.search("IS"));
+// 13. slice() :
+console.log(s1.slice(2,5)); //seperate 
+// 14. Split() :
+console.log(s1.split(" "));
+// 15. substr() :
+console.log(s1.substr(2,5));
+// 16. toUppercase() :
+console.log(s4.toUpperCase());
+// 17. toLowercase() :
+console.log(s5.toLowerCase());
+// 18. trim() :
+console.log(s6.trim());
+</script>
+
+</body>
+</html>
