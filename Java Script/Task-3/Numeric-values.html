@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manipulate Numeric Lists</title>
+</head>
+<body>
+
+<script>
+  // List of numeric values with a length of 10
+  const numericList = [5, 8, 2, 9, 1, 7, 3, 6, 10, 4];
+
+  // Sort the values in ascending order
+  const sortedList = numericList.slice().sort((a, b) => a - b);
+
+  // Add one to each value using map and reduce functions
+  const modifiedList = numericList.map(value => value + 1);
+
+  // Display the sorted list and the modified list
+  document.write("<p>Original List: " + numericList.join(", ") + "</p>");
+  document.write("<p>Sorted List: " + sortedList.join(", ") + "</p>");
+  document.write("<p>Modified List (Added one to each value): " + modifiedList.join(", ") + "</p>");
+</script>
+
+</body>
+</html>
+
+<!-- The slice method is used to create a copy of the original stringList. -->

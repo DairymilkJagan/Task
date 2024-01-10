@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manipulate Lists</title>
+</head>
+<body>
+
+<script>
+  // List of string values with a length of 5
+  const stringList = ["Apple", "Banana", "Orange", "Grapes", "Pineapple"];
+
+  // Separate even index values into one list and odd index values into another list
+  const evenIndexList = [];
+  const oddIndexList = [];
+
+  for (let i = 0; i < stringList.length; i++) {
+    if (i % 2 === 0) {
+      // Even index
+      evenIndexList.push(stringList[i]);
+    } else {
+      // Odd index
+      oddIndexList.push(stringList[i]);
+    }
+  }
+
+  // Add two more string values after the 3rd index
+  const additionalValues = ["Mango", "Cherry"];
+  stringList.splice(3, 0, ...additionalValues);
+
+  // Sort the original list in ascending order
+  const sortedList = stringList.slice().sort();
+
+  // Display the updated lists
+  document.write("<p>Original List: " + stringList.join(", ") + "</p>");
+  document.write("<p>Even Index List: " + evenIndexList.join(", ") + "</p>");
+  document.write("<p>Odd Index List: " + oddIndexList.join(", ") + "</p>");
+  document.write("<p>Sorted List: " + sortedList.join(", ") + "</p>");
+</script>
+
+</body>
+</html>
+
+<!-- The slice method is used to create a copy of the original stringList. -->
+<!-- The sort method is then applied to sort the copied list in ascending order. -->

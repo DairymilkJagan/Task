@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        input {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add Sub Multiply</h1>
+    <label for="Enter first number">Enter first Number:</label>
+    <input type="number" id="input1">
+    <br><br>
+    <label for="Enter second number">Enter second Number:</label>
+    <input type="number" id="input2">
+    <br><br>
+    <button class="addition-btn">Addition</button>
+    <br><br>
+    <button class="subtraction-btn">Subtraction</button>
+    <br><br>
+    <button class="multiplication-btn">Multiplication</button>
+    <p id="result">Result: </p>
+
+    <script>
+        class Calculator {
+            constructor() {
+                // Default values
+                this.num1 = 0;
+                this.num2 = 0;
+            }
+            addition() {
+                return this.num1 + this.num2;
+            }
+            subtraction() {
+                return this.num1 - this.num2;
+            }
+            multiplication() {
+                return this.num1 * this.num2;
+            }
+        }
+
+        const calculatorInstance = new Calculator();
+
+        document.querySelector('.addition-btn').addEventListener('click', () => {
+            calculatorInstance.num1 = parseFloat(document.getElementById('input1').value) || 0;
+            calculatorInstance.num2 = parseFloat(document.getElementById('input2').value) || 0;
+            document.getElementById('result').textContent = `Result: ${calculatorInstance.addition()}`;
+        });
+
+        document.querySelector('.subtraction-btn').addEventListener('click', () => {
+            calculatorInstance.num1 = parseFloat(document.getElementById('input1').value) || 0;
+            calculatorInstance.num2 = parseFloat(document.getElementById('input2').value) || 0;
+            document.getElementById('result').textContent = `Result: ${calculatorInstance.subtraction()}`;
+        });
+
+        document.querySelector('.multiplication-btn').addEventListener('click', () => {
+            calculatorInstance.num1 = parseFloat(document.getElementById('input1').value) || 0;
+            calculatorInstance.num2 = parseFloat(document.getElementById('input2').value) || 0;
+            document.getElementById('result').textContent = `Result: ${calculatorInstance.multiplication()}`;
+        });
+    </script>
+</body>
+</html>

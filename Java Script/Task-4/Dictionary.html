@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retrieve and Display Selected Dictionary</title>
+</head>
+<body>
+
+<script>
+  // List of dictionaries with 3 key-value pairs each
+  const dictionaryList = [
+    { key1: "value1a", key2: "value2a", key3: "value3a", selected: "False" },
+    { key1: "value1b", key2: "value2b", key3: "value3b", selected: "True" },
+    { key1: "value1c", key2: "value2c", key3: "value3c", selected: "False" }
+  ];
+
+    // Iterate through the list and display each dictionary
+    for (let i = 0; i < dictionaryList.length; i++) {
+    const currentDictionary = dictionaryList[i];
+    document.write("<p>Dictionary " + (i + 1) + ":</p>");
+    document.write("<ul>");
+    for (const key in currentDictionary) {
+      if (currentDictionary.hasOwnProperty(key)) {
+        document.write("<li>" + key + ": " + currentDictionary[key] + "</li>");
+      }
+    }
+    document.write("</ul>");
+  }
+
+
+  // Find the dictionary with key "selected" and value "True"
+  const selectedDictionary = dictionaryList.find(dict => dict.selected === "True");
+
+  // Display each key and value separately for the selected dictionary
+  if (selectedDictionary) {
+    document.write("<p>Selected Dictionary:</p>");
+    document.write("<ul>");
+    for (const key in selectedDictionary) {
+      if (selectedDictionary.hasOwnProperty(key)) {
+        document.write("<li>" + key + ": " + selectedDictionary[key] + "</li>");
+      }
+    }
+    document.write("</ul>");
+  } else {
+    document.write("<p>No dictionary with key 'selected' and value 'True' found.</p>");
+  }
+</script>
+
+</body>
+</html>
+
+
+
+
+
