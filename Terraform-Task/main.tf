@@ -22,19 +22,25 @@ terraform {
 # 3rd Depends on Modules 
 
 resource "google_storage_bucket_object" "example_object" {
-  name   = "file.txt"  # Name of the object in the bucket
+  name   = "file.txt"  # object in the bucket
   bucket = google_storage_bucket.example_bucket.name
   source = "D:\\Product Task\\task\\Terraform-Task\\file.txt"
   depends_on = [google_storage_bucket.example_bucket]
 
-   metadata = {
-    dynamic_key   = var.dynamic_value
-    static_key    = "static_metadata_value"
-  }
 }
 
-variable "dynamic_value" {
-  description = "A dynamic value for the object metadata"
-  type        = string
-  default     = "default_dynamic_value"
+# 4 Try static and dynamic values passing for the variables that will be used by the resource during creationtime.
+variable "bucket_name" {
+  type    = string
+  default = "demo-task"
+}
+# 4
+variable "bucket_location" {
+  type    = string
+  default = "US"
+}
+
+#5. Print the output of a resource which you have created.
+output "bucket_url" {
+  value = google_storage_bucket.example_bucket.url
 }
