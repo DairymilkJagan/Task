@@ -1,0 +1,25 @@
+[2024-01-05T06:40:32.878+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Task4.insert_into_product_returns scheduled__2024-01-05T04:44:00+00:00 [queued]>
+[2024-01-05T06:40:33.003+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Task4.insert_into_product_returns scheduled__2024-01-05T04:44:00+00:00 [queued]>
+[2024-01-05T06:40:33.005+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-01-05T06:40:33.128+0000] {taskinstance.py:1382} INFO - Executing <Task(PostgresOperator): insert_into_product_returns> on 2024-01-05 04:44:00+00:00
+[2024-01-05T06:40:33.148+0000] {standard_task_runner.py:57} INFO - Started process 873 to run task
+[2024-01-05T06:40:33.167+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'Task4', 'insert_into_product_returns', 'scheduled__2024-01-05T04:44:00+00:00', '--job-id', '3492', '--raw', '--subdir', 'DAGS_FOLDER/Airflow-task-3.py', '--cfg-path', '/tmp/tmpj3sa8o3n']
+[2024-01-05T06:40:33.171+0000] {standard_task_runner.py:85} INFO - Job 3492: Subtask insert_into_product_returns
+[2024-01-05T06:40:33.436+0000] {task_command.py:416} INFO - Running <TaskInstance: Task4.insert_into_product_returns scheduled__2024-01-05T04:44:00+00:00 [running]> on host 439392e7318f
+[2024-01-05T06:40:33.762+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Jagan' AIRFLOW_CTX_DAG_ID='Task4' AIRFLOW_CTX_TASK_ID='insert_into_product_returns' AIRFLOW_CTX_EXECUTION_DATE='2024-01-05T04:44:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-01-05T04:44:00+00:00'
+[2024-01-05T06:40:33.771+0000] {sql.py:274} INFO - Executing: 
+    INSERT INTO Product_returns ( customer_id, return_date)
+    VALUES
+        (1, NOW()),
+        (2, NOW())
+[2024-01-05T06:40:33.809+0000] {base.py:73} INFO - Using connection ID 'postgres_localhost' for task execution.
+[2024-01-05T06:40:33.848+0000] {base.py:73} INFO - Using connection ID 'postgres_localhost' for task execution.
+[2024-01-05T06:40:34.028+0000] {sql.py:418} INFO - Running statement: 
+    INSERT INTO Product_returns ( customer_id, return_date)
+    VALUES
+        (1, NOW()),
+        (2, NOW()), parameters: None
+[2024-01-05T06:40:34.052+0000] {sql.py:427} INFO - Rows affected: 2
+[2024-01-05T06:40:34.099+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=Task4, task_id=insert_into_product_returns, execution_date=20240105T044400, start_date=20240105T064032, end_date=20240105T064034
+[2024-01-05T06:40:34.186+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-01-05T06:40:34.240+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,25 @@
+[2024-01-05T06:26:32.160+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Task4.insert_into_orders scheduled__2024-01-04T15:12:00+00:00 [queued]>
+[2024-01-05T06:26:32.215+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Task4.insert_into_orders scheduled__2024-01-04T15:12:00+00:00 [queued]>
+[2024-01-05T06:26:32.220+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-01-05T06:26:32.361+0000] {taskinstance.py:1382} INFO - Executing <Task(PostgresOperator): insert_into_orders> on 2024-01-04 15:12:00+00:00
+[2024-01-05T06:26:32.456+0000] {standard_task_runner.py:57} INFO - Started process 375 to run task
+[2024-01-05T06:26:32.461+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'Task4', 'insert_into_orders', 'scheduled__2024-01-04T15:12:00+00:00', '--job-id', '2341', '--raw', '--subdir', 'DAGS_FOLDER/Airflow-task-3.py', '--cfg-path', '/tmp/tmpeeycl22t']
+[2024-01-05T06:26:32.478+0000] {standard_task_runner.py:85} INFO - Job 2341: Subtask insert_into_orders
+[2024-01-05T06:26:32.913+0000] {task_command.py:416} INFO - Running <TaskInstance: Task4.insert_into_orders scheduled__2024-01-04T15:12:00+00:00 [running]> on host 73272df13e14
+[2024-01-05T06:26:33.466+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Jagan' AIRFLOW_CTX_DAG_ID='Task4' AIRFLOW_CTX_TASK_ID='insert_into_orders' AIRFLOW_CTX_EXECUTION_DATE='2024-01-04T15:12:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-01-04T15:12:00+00:00'
+[2024-01-05T06:26:33.504+0000] {sql.py:274} INFO - Executing: 
+    INSERT INTO Orders (customer_id, order_date)
+    VALUES
+        (1, NOW()),
+        ( 2, NOW())
+[2024-01-05T06:26:33.581+0000] {base.py:73} INFO - Using connection ID 'postgres_localhost' for task execution.
+[2024-01-05T06:26:33.668+0000] {base.py:73} INFO - Using connection ID 'postgres_localhost' for task execution.
+[2024-01-05T06:26:33.856+0000] {sql.py:418} INFO - Running statement: 
+    INSERT INTO Orders (customer_id, order_date)
+    VALUES
+        (1, NOW()),
+        ( 2, NOW()), parameters: None
+[2024-01-05T06:26:33.888+0000] {sql.py:427} INFO - Rows affected: 2
+[2024-01-05T06:26:33.951+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=Task4, task_id=insert_into_orders, execution_date=20240104T151200, start_date=20240105T062632, end_date=20240105T062633
+[2024-01-05T06:26:34.096+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-01-05T06:26:34.246+0000] {taskinstance.py:2778} INFO - 1 downstream tasks scheduled from follow-on schedule check

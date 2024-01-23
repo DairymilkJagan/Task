@@ -44,3 +44,4 @@ calculate_purchase_details_task = PostgresOperator(
 )
 
 calculate_purchase_details_task
+

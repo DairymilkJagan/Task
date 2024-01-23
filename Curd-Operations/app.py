@@ -100,119 +100,120 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-class Employee(db.Model):
-    __tablename__ = "employee"
-    id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(50), nullable=False)
-    last_name = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(100), nullable=False)
-    department = db.Column(db.String(50), nullable=False)
-    salary = db.Column(db.Float, nullable=False)
+# class Employee(db.Model):
+#     __tablename__ = "employee"
+#     id = db.Column(db.Integer, primary_key=True)
+#     first_name = db.Column(db.String(50), nullable=False)
+#     last_name = db.Column(db.String(50), nullable=False)
+#     email = db.Column(db.String(100), nullable=False)
+#     department = db.Column(db.String(50), nullable=False)
+#     salary = db.Column(db.Float, nullable=False)
 
-#  Create tables
-db.create_all()
+# #  Create tables
+# db.create_all()
 
-#  GET all employees
-@app.route('/employees', methods=['GET'])
-def get_employees():
-    try:
-        employees = Employee.query.all()
-        employee_list = []
-        for employee in employees:
-            employee_data = {
-                'id': employee.id,
-                'first_name': employee.first_name,
-                'last_name': employee.last_name,
-                'email': employee.email,
-                'department': employee.department,
-                'salary': employee.salary
-            }
-            employee_list.append(employee_data)
-        return render_template('employees.html',employee_list = employee_list)
-    except SQLAlchemyError as e:
-        return jsonify({'error': str(e)}), 500
+# #  GET all employees
+# @app.route('/employees', methods=['GET'])
+# def get_employees():
+#     try:
+#         employees = Employee.query.all()
+#         employee_list = []
+#         for employee in employees:
+#             employee_data = {
+#                 'id': employee.id,
+#                 'first_name': employee.first_name,
+#                 'last_name': employee.last_name,
+#                 'email': employee.email,
+#                 'department': employee.department,
+#                 'salary': employee.salary
+#             }
+#             employee_list.append(employee_data)
+#         return render_template('employees.html',employee_list = employee_list)
+#     except SQLAlchemyError as e:
+#         return jsonify({'error': str(e)}), 500
 
-# GET single employee by ID
-@app.route('/employees/<int:id>', methods=['GET'])
-def get_employee(id):
-    try:
-        employee = Employee.query.get(id)
-        if employee:
-            employee_data = {
-                'id': employee.id,
-                'first_name': employee.first_name,
-                'last_name': employee.last_name,
-                'email': employee.email,
-                'department': employee.department,
-                'salary': employee.salary
-            }
-            return jsonify({'employee': employee_data})
-        else:
-            return jsonify({'message': 'Employee not found'}), 404
-    except SQLAlchemyError as e:
-        return jsonify({'error': str(e)}), 500
+# # GET single employee by ID
+# @app.route('/employees/<int:id>', methods=['GET'])
+# def get_employee(id):
+#     try:
+#         employee = Employee.query.get(id)
+#         if employee:
+#             employee_data = {
+#                 'id': employee.id,
+#                 'first_name': employee.first_name,
+#                 'last_name': employee.last_name,
+#                 'email': employee.email,
+#                 'department': employee.department,
+#                 'salary': employee.salary
+#             }
+#             return jsonify({'employee': employee_data})
+#         else:
+#             return jsonify({'message': 'Employee not found'}), 404
+#     except SQLAlchemyError as e:
+#         return jsonify({'error': str(e)}), 500
 
-# POST to add a new employee
-@app.route('/employees', methods=['POST'])
-def add_employee():
-    try:
-        data = request.form.to_dict()
-        new_employee = Employee(
-            first_name=data['first_name'],
-            last_name=data['last_name'],
-            email=data['email'],
-            department=data['department'],
-            salary=data['salary']
-        )
-        db.session.add(new_employee)
-        db.session.commit()
-        return redirect(url_for('get_employees'))
-    except SQLAlchemyError as e:
-        db.session.rollback()
-        return jsonify({'error': str(e)}), 500
+# # POST to add a new employee
+# @app.route('/employees', methods=['POST'])
+# def add_employee():
+#     try:
+#         data = request.form.to_dict()
+#         new_employee = Employee(
+#             first_name=data['first_name'],
+#             last_name=data['last_name'],
+#             email=data['email'],
+#             department=data['department'],
+#             salary=data['salary']
+#         )
+#         db.session.add(new_employee)
+#         db.session.commit()
+#         return redirect(url_for('get_employees'))
+#     except SQLAlchemyError as e:
+#         db.session.rollback()
+#         return jsonify({'error': str(e)}), 500
 
-# DELETE employee by ID
-@app.route('/delete', methods=['POST'])
-def delete_employee():
-    try:
-        employee = request.form.get('id')
-        details = Employee.query.filter(Employee.id == str(employee)).first()
-        # details = Employee.query.filter(Employee.id == str(employee))
-        # print("Employee ID to delete:", employee)
-        if details:
-            db.session.delete(details)
-            db.session.commit()
-            return redirect(url_for('get_employees'))
-        else:
-            return jsonify({'message': 'Employee not found'}), 404
-    except SQLAlchemyError as e:
-        db.session.rollback()
-        return jsonify({'error': str(e)}), 500
+# # DELETE employee by ID
+# @app.route('/delete', methods=['POST'])
+# def delete_employee():
+#     try:
+#         employee = request.form.get('id')
+#         details = Employee.query.filter(Employee.id == str(employee)).first()
+#         # details = Employee.query.filter(Employee.id == str(employee))
+#         # print("Employee ID to delete:", employee)
+#         if details:
+#             db.session.delete(details)
+#             db.session.commit()
+#             return redirect(url_for('get_employees'))
+#         else:
+#             return jsonify({'message': 'Employee not found'}), 404
+#     except SQLAlchemyError as e:
+#         db.session.rollback()
+#         return jsonify({'error': str(e)}), 500
     
-@app.route('/update_employee', methods=["GET"])
-def update_employee():
-        form_data = request.form.to_dict() 
-        employee_id  = form_data['id']
-        employee = Employee.query.get(employee_id)
+# @app.route('/update_employee', methods=["GET"])
+# def update_employee():
+#         form_data = request.form.to_dict() 
+#         employee_id  = form_data['id']
+#         employee = Employee.query.get(employee_id)
         
-        employee_values= {
-               'id': employee.employee_id,
-                'first_name': employee.first_name,
-                'last_name': employee.last_name,
-                'email': employee.email,
-                'department': employee.department,
-                'salary': float(employee.salary)
-        }
-        if not employee:
-            return jsonify({'message': 'Employee not found'}), 404
-        else:
-            for key, value in employee_values.items():
-              if key not in form_data:
-                 form_data[key] = value
-        print(form_data)
-        db.session.commit()      
-        return "Data update successfully"
+#         employee_values= {
+#                'id': employee.employee_id,
+#                 'first_name': employee.first_name,
+#                 'last_name': employee.last_name,
+#                 'email': employee.email,
+#                 'department': employee.department,
+#                 'salary': float(employee.salary)
+#         }
+#         if not employee:
+#             return jsonify({'message': 'Employee not found'}), 404
+#         else:
+#             for key, value in employee_values.items():
+#               if key not in form_data:
+#                  form_data[key] = value
+#         print(form_data)
+#         db.session.commit()      
+#         return "Data update successfully"
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    app.run(host="0.0.0.0",port=5000)
